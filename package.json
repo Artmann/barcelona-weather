@@ -1,0 +1,82 @@
+{
+  "name": "react-koa-template",
+  "version": "1.0.0",
+  "description": "React + Koa Template",
+  "main": "src/server/index.ts",
+  "repository": "https://github.com/Artmann/react-koa-template",
+  "author": "Christoffer Artmann <Artgaard@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "concurrently \"tsc\" \"webpack -p\"",
+    "dev": "concurrently \"nodemon\" \"webpack -d -w\"",
+    "lint": "eslint ./src --ext .ts",
+    "start": "node dist/server/index.js",
+    "test": "jest --",
+    "test:watch": "jest --watchAll --"
+  },
+  "nodemon": {
+    "restartable": "rs",
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules"
+    ],
+    "verbose": true,
+    "execMap": {
+      "ts": "node --require ts-node/register"
+    },
+    "watch": [
+      "src/server"
+    ],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "ext": "ts,tsx"
+  },
+  "dependencies": {
+    "koa": "^2.11.0",
+    "koa-logger": "^3.2.1",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^8.0.8",
+    "koa-static": "^5.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^10.0.4",
+    "@types/jest": "^25.2.1",
+    "@types/koa": "^2.11.3",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-mount": "^4.0.0",
+    "@types/koa-router": "^7.4.0",
+    "@types/koa-static": "^4.0.1",
+    "@types/node": "^13.13.5",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "@types/supertest": "^2.0.9",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "autoprefixer": "^9.7.6",
+    "concurrently": "^5.2.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.5.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
+    "extract-css-chunks-webpack-plugin": "^4.7.4",
+    "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.3",
+    "postcss-cli": "^7.1.1",
+    "postcss-loader": "^3.0.0",
+    "source-map-loader": "^0.2.4",
+    "supertest": "^4.0.2",
+    "tailwindcss": "^1.4.4",
+    "ts-jest": "^25.5.0",
+    "ts-loader": "^7.0.2",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
