@@ -5,12 +5,11 @@ import mount from 'koa-mount';
 import Router from 'koa-router';
 import serve from 'koa-static';
 import { join } from 'path';
-import { createElement } from 'react';
-import ReactDOMServer from 'react-dom/server';
+// import { createElement } from 'react';
+// import ReactDOMServer from 'react-dom/server';
 import { container } from 'tsyringe';
 
 import WeatherController from './api/weather';
-import App from '../app/app';
 
 const app = new Koa();
 const router = new Router();
@@ -25,10 +24,15 @@ router.get('/api/weather', async (context: Context) => {
 });
 
 router.get('/*', async function(context: Context) {
-  const componentMarkup = ReactDOMServer.renderToString(createElement(App));
   const template = await fs.readFile(join(staticsPath, 'index.html'),  'utf-8');
+  /*
+  const App = require('../app/app').default;
+  const componentMarkup = ReactDOMServer.renderToString(createElement(App));
+  console.log(componentMarkup);
 
   const html = template.replace('<div id="root"></div>', `<div id="root">${ componentMarkup }</div>`);
+*/
+  const html = template;
 
   context.body = html;
 });
