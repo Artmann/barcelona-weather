@@ -34,14 +34,19 @@
     "ext": "ts,tsx"
   },
   "dependencies": {
+    "brain.js": "^2.0.0-alpha.12",
+    "cosine-similarity": "^1.0.1",
     "koa": "^2.11.0",
     "koa-logger": "^3.2.1",
     "koa-mount": "^4.0.0",
     "koa-router": "^8.0.8",
     "koa-static": "^5.0.0",
+    "moment": "^2.25.3",
     "node-fetch": "^2.6.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.2.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.5.0",

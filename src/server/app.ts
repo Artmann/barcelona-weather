@@ -7,9 +7,10 @@ import serve from 'koa-static';
 import { join } from 'path';
 import { createElement } from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { container } from 'tsyringe';
 
+import WeatherController from './api/weather';
 import App from '../app/app';
-import { corgis } from './api/corgis';
 
 const app = new Koa();
 const router = new Router();
@@ -17,7 +18,11 @@ const router = new Router();
 const staticsPath = join(__dirname, '..', '..', 'dist', 'statics');
 const statics = serve(staticsPath);
 
-router.get('/api/corgis', corgis);
+const weatherController = container.resolve(WeatherController);
+
+router.get('/api/weather', async (context: Context) => {
+  await weatherController.getWeather(context);
+});
 
 router.get('/*', async function(context: Context) {
   const componentMarkup = ReactDOMServer.renderToString(createElement(App));

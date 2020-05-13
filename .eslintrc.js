@@ -23,6 +23,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended'
   ],
   rules: {
+    '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/no-explicit-any': 'off'
   }
 };

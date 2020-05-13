@@ -2,15 +2,7 @@ import { promises as fs } from 'fs';
 import fetch from 'node-fetch';
 import { join } from 'path';
 
-interface WeatherDataPoint {
-  datetime: string;
-  humidity: number;
-  precipitation: number;
-  pressure: number;
-  temperature: number;
-  weather: string;
-  windSpeed: number;
-}
+import { WeatherDataPoint } from './index';
 
 async function fetchDataAtDate(date: string): Promise<WeatherDataPoint[]> {
   const apiKey = '3c8dc60435a047518c590934201305';
@@ -56,24 +48,26 @@ function wait(duration: number): Promise<void> {
 }
 
 (async function(): Promise<void> {
-  const year = 2019;
-  const month = 5;
-  const numberOfDays = new Date(year, month, 0).getDate();
-  const paddedMonth = `${month}`.padStart(2, '0');
   const dataPoints: WeatherDataPoint[] = [];
+  const year = 2019;
 
-  for (let day = 1; day <= numberOfDays; day++) {
-    const date = [year, paddedMonth, `${day}`.padStart(2, '0')].join('-');
-    console.log(date);
+  for (let month = 1; month <= 12; month++) {
+    const numberOfDays = new Date(year, month, 0).getDate();
+    const paddedMonth = `${month}`.padStart(2, '0');
 
-    const points = await fetchDataAtDate(date);
+    for (let day = 1; day <= numberOfDays; day++) {
+      const date = [year, paddedMonth, `${day}`.padStart(2, '0')].join('-');
+      console.log(date);
 
-    points.forEach(point => dataPoints.push(point));
+      const points = await fetchDataAtDate(date);
 
-    await wait(200);
+      points.forEach(point => dataPoints.push(point));
+
+      await wait(200);
+    }
   }
 
-  const outputPath = join(__dirname, 'data', `historical-${ year }-${ paddedMonth }.json`);
+  const outputPath = join(__dirname, 'data', `historical-${ year }.json`);
 
   console.log(`Saving data into ${ outputPath }.`);
 
